@@ -20,10 +20,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
 
-    // TODO (STEP 3: Create a variable for getting the name from intent.)
-    // START
+    private var selected: Boolean = false
+
+    //  Create a variable for getting the name from intent.)
     private var mUserName: String? = null
-    // END
+
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -34,15 +35,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_quiz_questions)
 
-        // TODO (STEP 4: Get the NAME from intent and assign it the variable.)
-        // START
+        // Get the NAME from intent and assign it the variable.)
         mUserName = intent.getStringExtra(Constants.USER_NAME)
-        // END
-
         mQuestionsList = Constants.getQuestions()
 
         setQuestion()
-
 
         tv_option_one.setOnClickListener(this)
         tv_option_two.setOnClickListener(this)
@@ -52,31 +49,33 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
 
             R.id.tv_option_one -> {
-
                 selectedOptionView(tv_option_one, 1)
+                selected = true
             }
 
             R.id.tv_option_two -> {
-
                 selectedOptionView(tv_option_two, 2)
+                selected = true
+
             }
 
             R.id.tv_option_three -> {
-
                 selectedOptionView(tv_option_three, 3)
+                selected = true
+
             }
 
             R.id.tv_option_four -> {
-
                 selectedOptionView(tv_option_four, 4)
+                selected = true
+
             }
 
             R.id.btn_submit -> {
-
+                if (selected) {
                 if (mSelectedOptionPosition == 0) {
                     mCurrentPosition++
 
@@ -85,16 +84,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             setQuestion()
                         }
                         else -> {
+                            if (selected) {
+                                val intent =
+                                    Intent(this@QuizQuestionsActivity, ResultActivity::class.java)
+                                intent.putExtra(Constants.USER_NAME, mUserName)
+                                intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                                intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
+                                startActivity(intent)
+                                finish()
 
-                            // START
-                            val intent =
-                                Intent(this@QuizQuestionsActivity, ResultActivity::class.java)
-                            intent.putExtra(Constants.USER_NAME, mUserName)
-                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
-                            startActivity(intent)
-                            finish()
-                            // END
+                            }
                         }
                     }
                 } else {
@@ -115,11 +114,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         btn_submit.text = "GO TO NEXT QUESTION"
                     }
-
                     mSelectedOptionPosition = 0
                 }
             }
-        }
+        }}
+
     }
 
     /**
@@ -127,7 +126,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
      */
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
-
+        selected = false
         val question =
             mQuestionsList!!.get(mCurrentPosition - 1) // Getting the question from the list with the help of current position.
 

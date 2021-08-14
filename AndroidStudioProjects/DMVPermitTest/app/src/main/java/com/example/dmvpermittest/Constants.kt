@@ -5,7 +5,6 @@ import com.permittest.jargueta.R
 
 object Constants {
 
-    // TODO (STEP 1: Create a constant variables which we required in the result screen.)
     // START
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_questions"
@@ -402,7 +401,7 @@ object Constants {
         )
         questionsList.add(que33)
 
-        val que332 = Question(
+        val que34 = Question(
             34,
             "This sign means:",
             R.drawable.ic_merginglane,
@@ -412,7 +411,7 @@ object Constants {
             "Highway curves ahead",
             3
         )
-        questionsList.add(que332)
+        questionsList.add(que34)
 
         val que35 = Question(
             35,
@@ -450,7 +449,7 @@ object Constants {
         )
         questionsList.add(que37)
 
-        val que372 = Question(
+        val que38 = Question(
             38,
             "Which of the following influence the effects of alcohol?",
             R.drawable.empty_bg,
@@ -460,7 +459,7 @@ object Constants {
             "All three choices",
             4
         )
-        questionsList.add(que372)
+        questionsList.add(que38)
 
         val que39 = Question(
             39,
