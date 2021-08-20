@@ -1,4 +1,4 @@
-package com.quizapp
+package com.example.dmvpermittest
 
 data class Question(
     val id: Int,

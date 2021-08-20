@@ -3,32 +3,28 @@ package com.example.dmvpermittest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.permittest.jargueta.R
-import com.quizapp.QuizQuestionsActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.permittest.jargueta.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
-        setContentView(R.layout.activity_main)
 
-        // To hide the status bar.
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        btn_start.setOnClickListener {
-
-                val intent = Intent(this@MainActivity, QuizQuestionsActivity::class.java)
-                // END
+        binding.btnStart.setOnClickListener {
+                val intent = Intent(this@MainActivity, ResultActivity::class.java)
                 startActivity(intent)
                 finish()
-
         }
     }
 }

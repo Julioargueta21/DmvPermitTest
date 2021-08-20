@@ -1,4 +1,4 @@
-package com.quizapp
+package com.example.dmvpermittest
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,7 +10,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.permittest.jargueta.R
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import com.permittest.jargueta.databinding.*
+import com.quizapp.Constants
+import kotlin.random.Random
+
+
+private lateinit var binding: ActivityQuizQuestionsBinding
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -25,51 +30,58 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     //  Create a variable for getting the name from intent.)
     private var mUserName: String? = null
 
-
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
-        // This is used to align the xml view to this class
-        setContentView(R.layout.activity_quiz_questions)
+        binding = ActivityQuizQuestionsBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // Get the NAME from intent and assign it the variable.)
         mUserName = intent.getStringExtra(Constants.USER_NAME)
         mQuestionsList = Constants.getQuestions()
-
+        mQuestionsList!!.shuffle()
         setQuestion()
 
-        tv_option_one.setOnClickListener(this)
-        tv_option_two.setOnClickListener(this)
-        tv_option_three.setOnClickListener(this)
-        tv_option_four.setOnClickListener(this)
-        btn_submit.setOnClickListener(this)
+        binding.tvOptionOne.setOnClickListener(this)
+        binding.tvOptionTwo.setOnClickListener(this)
+        binding.tvOptionThree.setOnClickListener(this)
+        binding.tvOptionFour.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
     }
 
+     private fun <T> MutableList<T>.shuffle(random: Random): Unit {
+        for (i in lastIndex downTo 1) {
+            val j = random.nextInt(i + 1)
+            this[j] = this.set(i, this[j])
+        }
+    }
     override fun onClick(v: View?) {
         when (v?.id) {
 
             R.id.tv_option_one -> {
-                selectedOptionView(tv_option_one, 1)
+                selectedOptionView( binding.tvOptionOne, 1)
                 selected = true
             }
 
             R.id.tv_option_two -> {
-                selectedOptionView(tv_option_two, 2)
+                selectedOptionView(binding.tvOptionTwo, 2)
                 selected = true
 
             }
 
             R.id.tv_option_three -> {
-                selectedOptionView(tv_option_three, 3)
+                selectedOptionView(binding.tvOptionThree, 3)
                 selected = true
 
             }
 
             R.id.tv_option_four -> {
-                selectedOptionView(tv_option_four, 4)
+                selectedOptionView(binding.tvOptionFour, 4)
                 selected = true
 
             }
@@ -110,9 +122,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
 
                     if (mCurrentPosition == mQuestionsList!!.size) {
-                        btn_submit.text = "FINISH"
+                        binding.btnSubmit.text = "FINISH"
                     } else {
-                        btn_submit.text = "GO TO NEXT QUESTION"
+                        binding.btnSubmit.text = "GO TO NEXT QUESTION"
                     }
                     mSelectedOptionPosition = 0
                 }
@@ -121,11 +133,13 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    /**
-     * A function for setting the question to UI components.
-     */
+
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
+       binding.tvOptionOne.isClickable = true
+        binding.tvOptionTwo.isClickable = true
+        binding.tvOptionThree.isClickable = true
+        binding.tvOptionFour.isClickable = true
         selected = false
         val question =
             mQuestionsList!!.get(mCurrentPosition - 1) // Getting the question from the list with the help of current position.
@@ -133,21 +147,20 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView()
 
         if (mCurrentPosition == mQuestionsList!!.size) {
-            btn_submit.text = "FINISH"
+            binding.btnSubmit.text = "FINISH"
         } else {
-            btn_submit.text = "SUBMIT"
+            binding.btnSubmit.text = "SUBMIT"
         }
 
-        progressBar.progress = mCurrentPosition
-        progressBar.max = mQuestionsList!!.size
-        tv_progress.text = "$mCurrentPosition" + "/" + progressBar.max
-
-        tv_question.text = question.question
-        iv_image.setImageResource(question.image)
-        tv_option_one.text = question.optionOne
-        tv_option_two.text = question.optionTwo
-        tv_option_three.text = question.optionThree
-        tv_option_four.text = question.optionFour
+        binding.progressBar.progress = mCurrentPosition
+        binding.progressBar.max = mQuestionsList!!.size
+        binding.tvProgress.text = "$mCurrentPosition" + "/" + binding.progressBar.max
+        binding.tvQuestion.text = question.question
+        binding.ivImage.setImageResource(question.image)
+        binding.tvOptionOne.text = question.optionOne
+        binding.tvOptionTwo.text = question.optionTwo
+        binding.tvOptionThree.text = question.optionThree
+        binding.tvOptionFour.text = question.optionFour
     }
 
     /**
@@ -175,10 +188,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private fun defaultOptionsView() {
 
         val options = ArrayList<TextView>()
-        options.add(0, tv_option_one)
-        options.add(1, tv_option_two)
-        options.add(2, tv_option_three)
-        options.add(3, tv_option_four)
+        options.add(0, binding.tvOptionOne)
+        options.add(1, binding.tvOptionTwo)
+        options.add(2, binding.tvOptionThree)
+        options.add(3, binding.tvOptionFour)
 
         for (option in options) {
             option.setTextColor(Color.parseColor("#7A8089"))
@@ -198,28 +211,44 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         when (answer) {
 
             1 -> {
-                tv_option_one.background = ContextCompat.getDrawable(
+                binding.tvOptionOne.background = ContextCompat.getDrawable(
                     this@QuizQuestionsActivity,
                     drawableView
                 )
+                binding.tvOptionOne.isClickable = false
+                binding.tvOptionTwo.isClickable = false
+                binding.tvOptionThree.isClickable = false
+                binding.tvOptionFour.isClickable = false
             }
             2 -> {
-                tv_option_two.background = ContextCompat.getDrawable(
+                binding.tvOptionTwo.background = ContextCompat.getDrawable(
                     this@QuizQuestionsActivity,
                     drawableView
                 )
+                binding.tvOptionOne.isClickable = false
+                binding.tvOptionTwo.isClickable = false
+                binding.tvOptionThree.isClickable = false
+                binding.tvOptionFour.isClickable = false
             }
             3 -> {
-                tv_option_three.background = ContextCompat.getDrawable(
+                binding.tvOptionThree.background = ContextCompat.getDrawable(
                     this@QuizQuestionsActivity,
                     drawableView
                 )
+                binding.tvOptionOne.isClickable = false
+                binding.tvOptionTwo.isClickable = false
+                binding.tvOptionThree.isClickable = false
+                binding.tvOptionFour.isClickable = false
             }
             4 -> {
-                tv_option_four.background = ContextCompat.getDrawable(
+                binding.tvOptionFour.background = ContextCompat.getDrawable(
                     this@QuizQuestionsActivity,
                     drawableView
                 )
+                binding.tvOptionOne.isClickable = false
+                binding.tvOptionTwo.isClickable = false
+                binding.tvOptionThree.isClickable = false
+                binding.tvOptionFour.isClickable = false
             }
         }
     }

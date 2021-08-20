@@ -1,35 +1,43 @@
-package com.quizapp
+package com.example.dmvpermittest
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dmvpermittest.*
-import com.permittest.jargueta.R
-import kotlinx.android.synthetic.main.activity_result.*
+import com.permittest.jargueta.databinding.ActivityResultBinding
+import com.quizapp.Constants
+import java.util.*
 
 
 class ResultActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityResultBinding
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
 
-        // TODO (STEP 6: Hide the status bar and get the details from intent and set it to the UI. And also add a click event to the finish button.)
-        // START
-        // Hide the status bar.
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-
-        val userName = intent.getStringExtra(Constants.USER_NAME)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
 
-        tv_score.text = "Your Score is $correctAnswers out of $totalQuestions."
+        binding.tvScore.text = "Your Score is $correctAnswers out of $totalQuestions."
+        binding.btnFinish.setBackgroundColor(Color.parseColor("#5E5A60"))
+        binding.btnFinish.isEnabled = false
 
-        btn_finish.setOnClickListener {
+        
+        binding.btnFinish.postDelayed({
+            binding.btnFinish.setBackgroundColor(Color.parseColor("#6a1b9a"))
+            binding.btnFinish.isEnabled = true
+        }, 5000)
+
+        binding.btnFinish.setOnClickListener {
             startActivity(Intent(this@ResultActivity, MainActivity::class.java))
         }
-        // END
     }
 }
