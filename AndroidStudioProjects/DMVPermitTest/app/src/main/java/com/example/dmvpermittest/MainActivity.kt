@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnStart.setOnClickListener {
-                val intent = Intent(this@MainActivity, ResultActivity::class.java)
+                val intent = Intent(this@MainActivity, QuizQuestionsActivity::class.java)
                 startActivity(intent)
                 finish()
         }
