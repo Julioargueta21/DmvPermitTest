@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -30,13 +31,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     //  Create a variable for getting the name from intent.)
     private var mUserName: String? = null
 
-    /**
-     * This function is auto created by Android when the Activity Class is created.
-     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //This call the parent constructor
         super.onCreate(savedInstanceState)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         binding = ActivityQuizQuestionsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
