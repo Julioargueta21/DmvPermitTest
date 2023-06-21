@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name_sp">Examen del Permiso de Conducir</string>
+    <string name="action_settings_sp">Configuración</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label_sp">Primer Fragmento</string>
+    <string name="second_fragment_label_sp">Segundo Fragmento</string>
+    <string name="next_sp">Siguiente</string>
+    <string name="previous_sp">Anterior</string>
+
+    <string name="hello_first_fragment_sp">Hola primer fragmento</string>
+    <string name="hello_second_fragment_sp">Hola segundo fragmento. Arg: %1$s</string>
+    <string name="result_sp">Resultado</string>
+    <string name="congratulations_sp">¡Felicidades!</string>
+    <string name="images_sp">imágenes</string>
+    <string name="restart_sp">Reiniciar</string>
+    <string name="warning_sp">Este no es el examen oficial del DMV de Nueva York. Las siguientes preguntas se derivan de los exámenes de práctica del manual del Permiso DMV de Nueva York.</string>
+    <string name="setup_sp">¡Aprueba tu Examen Escrito del DMV! Este examen de práctica contiene 40 de las preguntas más comunes. ¡Domina estas preguntas y aprueba tu examen!</string>
+</resources>
