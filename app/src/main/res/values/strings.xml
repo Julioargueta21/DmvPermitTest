@@ -6,13 +6,36 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="back">Back</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="ingles">Ingles</string>
+    <string name="espanol">Español</string>
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="result">Result</string>
+    <string name="language">Language</string>
     <string name="congratulations">Congratulations!</string>
     <string name="images">images</string>
     <string name="restart">Restart</string>
     <string name="warning">This is not the official NY Permit DMV test exam. The following questions derived from the NY DMV Permit handbook practice exams.</string>
     <string name="setup">Pass your DMV Written Test! This practice test contains 40 of the most commonly asked test questions. Master these questions and ace your exam!</string>
+    <string name="title_activity_lanuage">LanuageActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

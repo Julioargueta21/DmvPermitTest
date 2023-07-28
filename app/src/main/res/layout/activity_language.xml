@@ -16,70 +16,54 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <nl.dionsegijn.konfetti.KonfettiView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="16dp">
-
-        </nl.dionsegijn.konfetti.KonfettiView>
-
         <TextView
-            android:id="@+id/tv_result"
+            android:id="@+id/tb_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="@string/result_sp"
+            android:text="@string/language"
             android:textColor="@android:color/white"
-            android:textSize="25sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/iv_trophy"
-            android:layout_width="347dp"
-            android:layout_height="374dp"
-            android:contentDescription="@string/images_sp"
-            android:src="@drawable/ic_trophy" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/congratulations_sp"
-            android:textColor="@android:color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="60dp"
-            android:textColor="@android:color/secondary_text_dark"
-            android:textSize="20sp" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/images"
+            android:src="@drawable/ic_language_big" />
 
         <Button
-            android:id="@+id/btn_finish"
+            android:id="@+id/btn_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/white"
+            android:text="@string/english"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_spanish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/white"
-            android:text="@string/restart_sp"
+            android:text="@string/spanish"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/white"
+            android:text="@string/back"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom|center">
-
-        <nl.dionsegijn.konfetti.KonfettiView
-            android:id="@+id/viewKonfetti"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

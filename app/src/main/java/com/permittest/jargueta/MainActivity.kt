@@ -1,5 +1,4 @@
 package com.permittest.jargueta
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnStart.setOnClickListener {
                 val intent = Intent(this@MainActivity, QuizQuestionsActivity::class.java)
                 startActivity(intent)
-                finish()
+        }
+        binding.btnLanguage.setOnClickListener {
+            val intent = Intent(this@MainActivity, LanguageActivity::class.java)
+            startActivity(intent)
         }
     }
 }
