@@ -20,7 +20,7 @@
     <string name="congratulations">Congratulations!</string>
     <string name="images">images</string>
     <string name="restart">Restart</string>
-    <string name="warning">This is not the official NY Permit DMV test exam. The following questions derived from the NY DMV Permit handbook practice exams.</string>
+    <string name="disclaimer">This is not the official NY Permit DMV test exam. The following questions derived from the NY DMV Permit handbook practice exams.</string>
     <string name="setup">Pass your DMV Written Test! This practice test contains 40 of the most commonly asked test questions. Master these questions and ace your exam!</string>
     <string name="title_activity_lanuage">LanuageActivity</string>
 

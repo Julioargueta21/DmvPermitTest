@@ -34,6 +34,7 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/main_text"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:gravity="center"
@@ -58,11 +59,12 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/disclaimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:paddingLeft="10dp"
-        android:text="@string/warning" />
+        android:text="@string/disclaimer" />
 
     <ImageButton
         android:id="@+id/btn_language"

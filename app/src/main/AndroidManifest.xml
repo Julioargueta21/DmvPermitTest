@@ -16,10 +16,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LanguageActivity"
-            android:exported="false"
+            android:launchMode="singleTop"
+        android:exported="false"
             android:label="@string/title_activity_lanuage" />
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:exported="true"
             android:screenOrientation="fullSensor"
             android:theme="@style/NoActionBarTheme"
@@ -32,9 +34,11 @@
         </activity>
         <activity
             android:name=".QuizQuestionsActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".ResultActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
             android:theme="@style/NoActionBarTheme" />
     </application>

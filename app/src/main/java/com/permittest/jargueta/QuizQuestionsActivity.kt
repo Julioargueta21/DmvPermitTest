@@ -13,9 +13,14 @@ import androidx.core.content.ContextCompat
 import com.permittest.jargueta.databinding.*
 import com.quizapp.Constants
 import kotlin.random.Random
+import android.content.SharedPreferences
+import java.util.Locale
+import com.permittest.jargueta.databinding.ActivityQuizQuestionsBinding
+import com.quizapp.ConstantsSpanish
 
 
 private lateinit var binding: ActivityQuizQuestionsBinding
+private lateinit var languagePreference: SharedPreferences
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -39,9 +44,18 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val view = binding.root
         setContentView(view)
 
-        // Get the NAME from intent and assign it the variable.)
+        val languagePref = getSharedPreferences("LanguagePreferences", MODE_PRIVATE)
+        val languagePreference = languagePref.getString("language", "en")
+
+        if (languagePreference == "es") {
+            mQuestionsList = ConstantsSpanish.getQuestions()
+        } else {
+            mQuestionsList = Constants.getQuestions()
+        }
+
+        // Get the NAME from intent and assign it the variable.
         mUserName = intent.getStringExtra(Constants.USER_NAME)
-        mQuestionsList = Constants.getQuestions()
+
         mQuestionsList!!.shuffle()
         setQuestion()
 
@@ -50,6 +64,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionThree.setOnClickListener(this)
         binding.tvOptionFour.setOnClickListener(this)
         binding.btnSubmit.setOnClickListener(this)
+
     }
 
      private fun <T> MutableList<T>.shuffle(random: Random): Unit {
@@ -58,6 +73,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             this[j] = this.set(i, this[j])
         }
     }
+
     override fun onClick(v: View?) {
         when (v?.id) {
 
@@ -97,7 +113,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             if (selected) {
                                 val intent =
                                     Intent(this@QuizQuestionsActivity, ResultActivity::class.java)
-                                intent.putExtra(Constants.USER_NAME, mUserName)
                                 intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
                                 intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
                                 startActivity(intent)
@@ -130,6 +145,22 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }}
 
     }
+
+//    private fun updateUI() {
+//        val tv_option_one_TextView = findViewById<TextView>(R.id.tv_option_one)
+//
+//        // Retrieve the language preference from SharedPreferences
+//        val languagePreference = sharedPreferences.getString("language", "en")
+//
+//        // Determine the appropriate string resource based on the language preference
+//        val constantStringResourceId = when (languagePreference) {
+//            "es" -> R.string.constant_spanish // Replace with your Spanish string resource
+//            else -> R.string.constant // Default to the string in the default language
+//        }
+//
+//        // Set the text of the TextView using the selected string resource
+//        tv_option_one_TextView.text = getString(constantStringResourceId)
+//    }
 
 
     @SuppressLint("SetTextI18n")
